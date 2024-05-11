@@ -54,27 +54,18 @@ public class Assessment {
     public void createInvestigation(
         CreateInvestigationCommand createInvestigationCommand
     ) {
-        // Assessment assessment = new Assessment();
-        // AssessmentRepository assessmentRepository = new AssessmentRepository();
+        Assessment assessment = new Assessment();
         
-        // assessment.setAccidentId(createInvestigationCommand.getAccidentId());
-        // assessment.setBusinessCode(createInvestigationCommand.getBusinessCode());
-        // assessment.setEmployeeId(createInvestigationCommand.getEmployeeId());
-        // assessment.setHospitalCode(createInvestigationCommand.getHospitalCode());
-        // assessment.setDoctorNote(createInvestigationCommand.getDoctorNote());
-        // assessment.setComments(createInvestigationCommand.getAccidentType());
+        assessment.setAccidentId(createInvestigationCommand.getAccidentId());
+        assessment.setBusinessCode(createInvestigationCommand.getBusinessCode());
+        assessment.setEmployeeId(createInvestigationCommand.getEmployeeId());
+        assessment.setHospitalCode(createInvestigationCommand.getHospitalCode());
+        assessment.setDoctorNote(createInvestigationCommand.getDoctorNote());
+        assessment.setComments(createInvestigationCommand.getAccidentType());
         
-        // assessmentRepository.save(assessment);
+        repository().save(assessment);
 
         InvestigationCreated investigationCreated = new InvestigationCreated(this);
-
-        investigationCreated.setAccidentId(createInvestigationCommand.getAccidentId());
-        investigationCreated.setBusinessCode(createInvestigationCommand.getBusinessCode());
-        investigationCreated.setEmployeeId(createInvestigationCommand.getEmployeeId());
-        investigationCreated.setHospitalCode(createInvestigationCommand.getHospitalCode());
-        investigationCreated.setDoctorNote(createInvestigationCommand.getDoctorNote());
-        investigationCreated.setComments(createInvestigationCommand.getAccidentType());
-
         investigationCreated.publishAfterCommit();
     }
 
