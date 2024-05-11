@@ -56,33 +56,18 @@ public class Accident {
     }
 
     //<<< Clean Arch / Port Method
-    public void applyMedicalBenefit(
-        ApplyMedicalBenefitCommand applyMedicalBenefitCommand
-    ) {
-        //implement business logic here:
+    public void applyMedicalBenefit(ApplyMedicalBenefitCommand applyMedicalBenefitCommand) {
+        
         MedicalBenefitApplied medicalBenefitApplied = new MedicalBenefitApplied(this);
         medicalBenefitApplied.publishAfterCommit();
     }
 
-    // public void applySickLeaveBenefit(
-    //     ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand
-    // ) {
-    //     //implement business logic here:
+    public void applySickLeaveBenefit(ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand) {
 
-    //     SickLeaveBenefitApplied sickLeaveBenefitApplied = new SickLeaveBenefitApplied(
-    //         this
-    //     );
-    //     sickLeaveBenefitApplied.publishAfterCommit();
+        SickLeaveBenefitApplied sickLeaveBenefitApplied = new SickLeaveBenefitApplied(this);
+        sickLeaveBenefitApplied.publishAfterCommit();
 
-    //     //Following code causes dependency to external APIs
-    //     // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
-
-    //     industrialaccident.external.SickLeave sickLeave = new industrialaccident.external.SickLeave();
-    //     // mappings goes here
-    //     AccidentApplication.applicationContext
-    //         .getBean(industrialaccident.external.SickLeaveService.class)
-    //         .requestSickLeaveBenefit(sickLeave);
-    // }
+    }
 
 }
 //>>> DDD / Aggregate Root
