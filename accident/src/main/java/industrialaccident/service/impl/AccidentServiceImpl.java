@@ -76,6 +76,7 @@ public class AccidentServiceImpl
         accident.setHospitalCode(applyMedicalBenefitCommand.getHospitalCode());
         accident.setDoctorNote(applyMedicalBenefitCommand.getDoctorNote());
         accident.setAccidentType(applyMedicalBenefitCommand.getAccidentType());
+        accident.setStatus("요양급여신청됨");
 
         accidentRepository.save(accident);
 
