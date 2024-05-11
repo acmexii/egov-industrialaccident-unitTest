@@ -115,11 +115,7 @@ public class ReceiptTest {
             assertEquals(String.valueOf(outputEvent.getAssessorId()), "1");
             assertEquals(outputEvent.getHospitalCode(), "hp_1");
             assertEquals(outputEvent.getDoctorNote(), "골절");
-            // assertEquals(outputEvent.getResults(), "N/A");
-            // assertEquals(outputEvent.getDate(), "2024-05-16");
-            // assertEquals(outputEvent.getComments(), "N/A");
         } catch (JsonProcessingException e) {
-            // TODO Auto-generated catch block
             assertTrue("exception", false);
         }
     }
