@@ -51,20 +51,33 @@ public class Assessment {
         return assessmentRepository;
     }
 
-    //<<< Clean Arch / Port Method
     public void createInvestigation(
         CreateInvestigationCommand createInvestigationCommand
     ) {
-        //implement business logic here:
+        // Assessment assessment = new Assessment();
+        // AssessmentRepository assessmentRepository = new AssessmentRepository();
+        
+        // assessment.setAccidentId(createInvestigationCommand.getAccidentId());
+        // assessment.setBusinessCode(createInvestigationCommand.getBusinessCode());
+        // assessment.setEmployeeId(createInvestigationCommand.getEmployeeId());
+        // assessment.setHospitalCode(createInvestigationCommand.getHospitalCode());
+        // assessment.setDoctorNote(createInvestigationCommand.getDoctorNote());
+        // assessment.setComments(createInvestigationCommand.getAccidentType());
+        
+        // assessmentRepository.save(assessment);
 
-        InvestigationCreated investigationCreated = new InvestigationCreated(
-            this
-        );
+        InvestigationCreated investigationCreated = new InvestigationCreated(this);
+
+        investigationCreated.setAccidentId(createInvestigationCommand.getAccidentId());
+        investigationCreated.setBusinessCode(createInvestigationCommand.getBusinessCode());
+        investigationCreated.setEmployeeId(createInvestigationCommand.getEmployeeId());
+        investigationCreated.setHospitalCode(createInvestigationCommand.getHospitalCode());
+        investigationCreated.setDoctorNote(createInvestigationCommand.getDoctorNote());
+        investigationCreated.setComments(createInvestigationCommand.getAccidentType());
+
         investigationCreated.publishAfterCommit();
     }
 
-    //>>> Clean Arch / Port Method
-    //<<< Clean Arch / Port Method
     public void updateInvestigation(
         UpdateInvestigationCommand updateInvestigationCommand
     ) {
@@ -75,7 +88,6 @@ public class Assessment {
         );
         investigationApproved.publishAfterCommit();
     }
-    //>>> Clean Arch / Port Method
 
 }
 //>>> DDD / Aggregate Root

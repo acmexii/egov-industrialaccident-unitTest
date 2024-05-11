@@ -30,23 +30,25 @@ public class PolicyHandler {
         value = KafkaProcessor.INPUT,
         condition = "headers['type']=='MedicalBenefitApplied'"
     )
-    public void wheneverMedicalBenefitApplied_Receipt(
-        @Payload MedicalBenefitApplied medicalBenefitApplied
-    ) {
+    public void wheneverMedicalBenefitApplied_Receipt(@Payload MedicalBenefitApplied medicalBenefitApplied) {
         MedicalBenefitApplied event = medicalBenefitApplied;
         System.out.println(
             "\n\n##### listener Receipt : " + medicalBenefitApplied + "\n\n"
         );
 
         CreateInvestigationCommand createInvestigationCommand = new CreateInvestigationCommand();
-        // implement:  Map command properties from event
+        assessmentRepository.findById(event.getId()
+        ).ifPresent(assessment->{
 
-        // assessmentRepository.findById(
-        // implement: Set the Assessment Id from one of MedicalBenefitApplied event's corresponding property
+            createInvestigationCommand.setAccidentId(event.getId());
+            createInvestigationCommand.setBusinessCode(event.getBusinessCode());
+            createInvestigationCommand.setEmployeeId(event.getEmployeeId());
+            createInvestigationCommand.setHospitalCode(event.getHospitalCode());
+            createInvestigationCommand.setDoctorNote(event.getDoctorNote());
+            createInvestigationCommand.setAccidentType(event.getAccidentType());
 
-        // ).ifPresent(assessment->{
-        //  assessment.createInvestigation(createInvestigationCommand);
-        // });
+            assessment.createInvestigation(createInvestigationCommand);
+        });
 
     }
 
