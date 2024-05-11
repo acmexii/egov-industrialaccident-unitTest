@@ -60,31 +60,29 @@ public class Accident {
         ApplyMedicalBenefitCommand applyMedicalBenefitCommand
     ) {
         //implement business logic here:
-
+        MedicalBenefitApplied medicalBenefitApplied = new MedicalBenefitApplied(this);
+        medicalBenefitApplied.publishAfterCommit();
     }
 
-    //>>> Clean Arch / Port Method
-    //<<< Clean Arch / Port Method
-    public void applySickLeaveBenefit(
-        ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand
-    ) {
-        //implement business logic here:
+    // public void applySickLeaveBenefit(
+    //     ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand
+    // ) {
+    //     //implement business logic here:
 
-        SickLeaveBenefitApplied sickLeaveBenefitApplied = new SickLeaveBenefitApplied(
-            this
-        );
-        sickLeaveBenefitApplied.publishAfterCommit();
+    //     SickLeaveBenefitApplied sickLeaveBenefitApplied = new SickLeaveBenefitApplied(
+    //         this
+    //     );
+    //     sickLeaveBenefitApplied.publishAfterCommit();
 
-        //Following code causes dependency to external APIs
-        // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
+    //     //Following code causes dependency to external APIs
+    //     // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
 
-        industrialaccident.external.SickLeave sickLeave = new industrialaccident.external.SickLeave();
-        // mappings goes here
-        AccidentApplication.applicationContext
-            .getBean(industrialaccident.external.SickLeaveService.class)
-            .requestSickLeaveBenefit(sickLeave);
-    }
-    //>>> Clean Arch / Port Method
+    //     industrialaccident.external.SickLeave sickLeave = new industrialaccident.external.SickLeave();
+    //     // mappings goes here
+    //     AccidentApplication.applicationContext
+    //         .getBean(industrialaccident.external.SickLeaveService.class)
+    //         .requestSickLeaveBenefit(sickLeave);
+    // }
 
 }
 //>>> DDD / Aggregate Root

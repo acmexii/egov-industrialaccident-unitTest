@@ -69,30 +69,17 @@ public class AccidentServiceImpl
     public Accident applyMedicalBenefit(
         ApplyMedicalBenefitCommand applyMedicalBenefitCommand
     ) throws Exception {
-        // You can implement logic here, or call the domain method of the Accident.
+        Accident accident = new Accident();
 
-        /** Option 1-1:  implement logic here     
-            Accident accident = new Accident();
-            accident.setUserId(event.getUserId());
+        accident.setBusinessCode(applyMedicalBenefitCommand.getBusinessCode());
+        accident.setEmployeeId(applyMedicalBenefitCommand.getEmployeeId());
+        accident.setHospitalCode(applyMedicalBenefitCommand.getHospitalCode());
+        accident.setDoctorNote(applyMedicalBenefitCommand.getDoctorNote());
+        accident.setAccidentType(applyMedicalBenefitCommand.getAccidentType());
 
-            accidentRepository.save(accident);   
-        */
+        accidentRepository.save(accident);
 
-        Optional<Accident> optionalAccident = accidentRepository.findById(
-            applyMedicalBenefitCommand.getAccidentId()
-        );
-
-        if (optionalAccident.isPresent()) {
-            Accident accident = optionalAccident.get();
-
-            // business Logic....
-            accident.applyMedicalBenefit(applyMedicalBenefitCommand);
-            accidentRepository.save(accident);
-
-            return accident;
-        } else {
-            throw processException("info.nodata.msg");
-        }
+        return accident;
     }
 
     @Override
@@ -108,20 +95,21 @@ public class AccidentServiceImpl
             accidentRepository.save(accident);   
         */
 
-        Optional<Accident> optionalAccident = accidentRepository.findById(
-            applySickLeaveBenefitCommand.getAccidentId()
-        );
+        // Optional<Accident> optionalAccident = accidentRepository.findById(
+        //     applySickLeaveBenefitCommand.getAccidentId()
+        // );
 
-        if (optionalAccident.isPresent()) {
-            Accident accident = optionalAccident.get();
+        // if (optionalAccident.isPresent()) {
+        //     Accident accident = optionalAccident.get();
 
-            // business Logic....
-            accident.applySickLeaveBenefit(applySickLeaveBenefitCommand);
-            accidentRepository.save(accident);
+        //     // business Logic....
+        //     accident.applySickLeaveBenefit(applySickLeaveBenefitCommand);
+        //     accidentRepository.save(accident);
 
-            return accident;
-        } else {
-            throw processException("info.nodata.msg");
-        }
+        //     return accident;
+        // } else {
+        //     throw processException("info.nodata.msg");
+        // }
+        return null;
     }
 }
