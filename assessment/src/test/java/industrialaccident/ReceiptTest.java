@@ -52,10 +52,10 @@ public class ReceiptTest {
 
         entity.setId(1L);
         entity.setAccidentId(1L);
-        entity.setBusinessCode("bc_1");
+        entity.setBusinessCode("bc-1");
         entity.setEmployeeId("user01");
         entity.setAssessorId(1L);
-        entity.setHospitalCode("hp_1");
+        entity.setHospitalCode("hp-1");
         entity.setDoctorNote("골절");
 
 
@@ -66,10 +66,10 @@ public class ReceiptTest {
         MedicalBenefitApplied event = new MedicalBenefitApplied();
 
         event.setId(1L);
-        event.setBusinessCode("bc_1");
+        event.setBusinessCode("bc-1");
         event.setEmployeeId("user01");
         event.setName("user");
-        event.setHospitalCode("hp_1");
+        event.setHospitalCode("hp-1");
         event.setDoctorNote("골절");
         event.setAccidentType("교통사고");
         event.setStatus("요양급여신청됨");
@@ -110,10 +110,10 @@ public class ReceiptTest {
 
             assertEquals(String.valueOf(outputEvent.getId()), "1");
             assertEquals(String.valueOf(outputEvent.getAccidentId()), "1");
-            assertEquals(outputEvent.getBusinessCode(), "bc_1");
+            assertEquals(outputEvent.getBusinessCode(), "bc-1");
             assertEquals(outputEvent.getEmployeeId(), "user01");
             assertEquals(String.valueOf(outputEvent.getAssessorId()), "1");
-            assertEquals(outputEvent.getHospitalCode(), "hp_1");
+            assertEquals(outputEvent.getHospitalCode(), "hp-1");
             assertEquals(outputEvent.getDoctorNote(), "골절");
         } catch (JsonProcessingException e) {
             assertTrue("exception", false);
