@@ -32,33 +32,24 @@ public class PolicyHandler {
     )
     public void wheneverMedicalBenefitApplied_Receipt(@Payload MedicalBenefitApplied medicalBenefitApplied) {
         MedicalBenefitApplied event = medicalBenefitApplied;
-        System.out.println(
-            "\n\n##### listener Receipt : " + medicalBenefitApplied + "\n\n"
-        );
 
         CreateInvestigationCommand createInvestigationCommand = new CreateInvestigationCommand();
-        assessmentRepository.findById(event.getId()
-        ).ifPresent(assessment->{
+        createInvestigationCommand.setAccidentId(event.getId());
+        createInvestigationCommand.setBusinessCode(event.getBusinessCode());
+        createInvestigationCommand.setEmployeeId(event.getEmployeeId());
+        createInvestigationCommand.setHospitalCode(event.getHospitalCode());
+        createInvestigationCommand.setDoctorNote(event.getDoctorNote());
+        createInvestigationCommand.setAccidentType(event.getAccidentType());
 
-            createInvestigationCommand.setAccidentId(event.getId());
-            createInvestigationCommand.setBusinessCode(event.getBusinessCode());
-            createInvestigationCommand.setEmployeeId(event.getEmployeeId());
-            createInvestigationCommand.setHospitalCode(event.getHospitalCode());
-            createInvestigationCommand.setDoctorNote(event.getDoctorNote());
-            createInvestigationCommand.setAccidentType(event.getAccidentType());
-
-            assessment.createInvestigation(createInvestigationCommand);
-        });
-
+        Assessment assessment = new Assessment();
+        assessment.createInvestigation(createInvestigationCommand);
+        assessmentRepository.save(assessment);
     }
 
     @StreamListener(
-        value = KafkaProcessor.INPUT,
-        condition = "headers['type']=='InvestigationApproved'"
-    )
+        value = KafkaProcessor.INPUT, condition = "headers['type']=='InvestigationApproved'")
     public void wheneverInvestigationApproved_CreateSickLeave(
-        @Payload InvestigationApproved investigationApproved
-    ) {
+        @Payload InvestigationApproved investigationApproved) {
         InvestigationApproved event = investigationApproved;
         System.out.println(
             "\n\n##### listener CreateSickLeave : " +

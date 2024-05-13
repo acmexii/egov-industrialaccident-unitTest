@@ -38,9 +38,7 @@ public class Accident {
 
     @PostPersist
     public void onPostPersist() {
-        MedicalBenefitApplied medicalBenefitApplied = new MedicalBenefitApplied(
-            this
-        );
+        MedicalBenefitApplied medicalBenefitApplied = new MedicalBenefitApplied(this);
         medicalBenefitApplied.publishAfterCommit();
     }
 
@@ -56,10 +54,14 @@ public class Accident {
     }
 
     //<<< Clean Arch / Port Method
-    public void applyMedicalBenefit(ApplyMedicalBenefitCommand applyMedicalBenefitCommand) {
-        
-        MedicalBenefitApplied medicalBenefitApplied = new MedicalBenefitApplied(this);
-        medicalBenefitApplied.publishAfterCommit();
+    public void applyMedicalBenefit(ApplyMedicalBenefitCommand applyMedicalBenefitCommand) {        
+        this.setBusinessCode(applyMedicalBenefitCommand.getBusinessCode());
+        this.setEmployeeId(applyMedicalBenefitCommand.getEmployeeId());
+        this.setName(applyMedicalBenefitCommand.getName());
+        this.setHospitalCode(applyMedicalBenefitCommand.getHospitalCode());
+        this.setDoctorNote(applyMedicalBenefitCommand.getDoctorNote());
+        this.setAccidentType(applyMedicalBenefitCommand.getAccidentType());
+        this.setStatus("요양급여신청됨");
     }
 
     public void applySickLeaveBenefit(ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand) {

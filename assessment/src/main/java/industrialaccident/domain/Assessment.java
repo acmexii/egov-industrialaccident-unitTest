@@ -38,10 +38,6 @@ public class Assessment {
 
     @PostPersist
     public void onPostPersist() {
-        InvestigationDisapproved investigationDisapproved = new InvestigationDisapproved(
-            this
-        );
-        investigationDisapproved.publishAfterCommit();
     }
 
     public static AssessmentRepository repository() {
@@ -51,20 +47,15 @@ public class Assessment {
         return assessmentRepository;
     }
 
-    public void createInvestigation(
-        CreateInvestigationCommand createInvestigationCommand
-    ) {
-        Assessment assessment = new Assessment();
+    public void createInvestigation(CreateInvestigationCommand createInvestigationCommand) {
+        this.setAccidentId(createInvestigationCommand.getAccidentId());
+        this.setBusinessCode(createInvestigationCommand.getBusinessCode());
+        this.setEmployeeId(createInvestigationCommand.getEmployeeId());
+        this.setHospitalCode(createInvestigationCommand.getHospitalCode());
+        this.setDoctorNote(createInvestigationCommand.getDoctorNote());
+        this.setComments(createInvestigationCommand.getAccidentType());
+        this.setResults("사실조사생성됨");
         
-        assessment.setAccidentId(createInvestigationCommand.getAccidentId());
-        assessment.setBusinessCode(createInvestigationCommand.getBusinessCode());
-        assessment.setEmployeeId(createInvestigationCommand.getEmployeeId());
-        assessment.setHospitalCode(createInvestigationCommand.getHospitalCode());
-        assessment.setDoctorNote(createInvestigationCommand.getDoctorNote());
-        assessment.setComments(createInvestigationCommand.getAccidentType());
-        
-        repository().save(assessment);
-
         InvestigationCreated investigationCreated = new InvestigationCreated(this);
         investigationCreated.publishAfterCommit();
     }

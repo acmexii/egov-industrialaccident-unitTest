@@ -54,7 +54,7 @@ public class AccidentController {
     }
 
     @RequestMapping(
-        value = "accidents",
+        value = "/accidents",
         method = RequestMethod.POST,
         produces = "application/json;charset=UTF-8"
     )

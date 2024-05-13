@@ -66,20 +66,11 @@ public class AccidentServiceImpl
     }
 
     @Override
-    public Accident applyMedicalBenefit(
-        ApplyMedicalBenefitCommand applyMedicalBenefitCommand
-    ) throws Exception {
-        Accident accident = new Accident();
-
-        accident.setBusinessCode(applyMedicalBenefitCommand.getBusinessCode());
-        accident.setEmployeeId(applyMedicalBenefitCommand.getEmployeeId());
-        accident.setHospitalCode(applyMedicalBenefitCommand.getHospitalCode());
-        accident.setDoctorNote(applyMedicalBenefitCommand.getDoctorNote());
-        accident.setAccidentType(applyMedicalBenefitCommand.getAccidentType());
-        accident.setStatus("요양급여신청됨");
-
+    public Accident applyMedicalBenefit(ApplyMedicalBenefitCommand applyMedicalBenefitCommand) throws Exception {
+        Accident accident = new Accident();        
+        accident.applyMedicalBenefit(applyMedicalBenefitCommand);
         accidentRepository.save(accident);
-
+        
         return accident;
     }
 
