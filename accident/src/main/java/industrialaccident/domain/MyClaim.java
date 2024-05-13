@@ -13,7 +13,7 @@ import lombok.Data;
 public class MyClaim {
 
     @Id
-    //@GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     private Long accidentId;
