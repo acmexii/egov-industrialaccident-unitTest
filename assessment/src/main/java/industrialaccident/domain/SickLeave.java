@@ -35,10 +35,17 @@ public class SickLeave {
         return sickLeaveRepository;
     }
 
-    //<<< Clean Arch / Port Method
+    // @PostLoad
+    // public void makeDelay(){
+    //     try {
+    //         Thread.currentThread().sleep((long) (400 + Math.random() * 220));
+    //     } catch (InterruptedException e) {
+    //         e.printStackTrace();
+    //     }
+    // }
+   
     public void applySalary(ApplySalaryCommand applySalaryCommand) {
         //implement business logic here:
-
         AverageSalaryApplied averageSalaryApplied = new AverageSalaryApplied(
             this
         );

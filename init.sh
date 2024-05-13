@@ -18,5 +18,13 @@ pip install httpie
 #nvm install 14.19.0 && nvm use 14.19.0
 #export NODE_OPTIONS=--openssl-legacy-provider
 
+mkdir temp && cd temp &&
+wget https://download.joedog.org/siege/siege-4.0.4.tar.gz &&
+tar -xvf siege-4.0.4.tar.gz &&
+cd siege-4.0.4 &&
+./configure --prefix=$HOME/siege > /dev/null 2>&1 &&
+sudo make install > /dev/null 2>&1 &&
+echo 'export PATH=$PATH:$HOME/siege/bin' >> ~/.bashrc &&
+
 cd infra
 docker-compose up
