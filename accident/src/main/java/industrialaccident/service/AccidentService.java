@@ -11,10 +11,6 @@ public interface AccidentService {
     Accident updateAccident(Accident accident) throws Exception;
     void deleteAccident(Long id) throws Exception;
 
-    Accident applyMedicalBenefit(
-        ApplyMedicalBenefitCommand applyMedicalBenefitCommand
-    ) throws Exception;
-    Accident applySickLeaveBenefit(
-        ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand
-    ) throws Exception;
+    Accident applyMedicalBenefit(ApplyMedicalBenefitCommand applyMedicalBenefitCommand) throws Exception;
+    Accident applySickLeaveBenefit(ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand) throws Exception;
 }

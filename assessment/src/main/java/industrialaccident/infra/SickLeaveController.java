@@ -52,4 +52,11 @@ public class SickLeaveController {
         // Delete a sickLeave via SickLeaveService
         sickLeaveService.deleteSickLeave(id);
     }
+
+    @PutMapping("/sickLeaves/{id}/requestsickleavebenefit")
+    public SickLeave requestSickLeaveBenefit(@PathVariable Long id, 
+                    @RequestBody RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand) throws Exception {
+        // Update an existing sickLeave via SickLeaveService
+        return sickLeaveService.requestSickLeaveBenefit(requestSickLeaveBenefitCommand);
+    }    
 }

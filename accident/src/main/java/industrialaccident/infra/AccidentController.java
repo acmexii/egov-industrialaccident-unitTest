@@ -77,8 +77,6 @@ public class AccidentController {
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
-        return accidentService.applySickLeaveBenefit(
-            applySickLeaveBenefitCommand
-        );
+        return accidentService.applySickLeaveBenefit(applySickLeaveBenefitCommand);
     }
 }

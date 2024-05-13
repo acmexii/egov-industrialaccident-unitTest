@@ -66,16 +66,7 @@ public class AssessmentServiceImpl
     }
 
     @Override
-    public Assessment updateInvestigation(
-        UpdateInvestigationCommand updateInvestigationCommand
-    ) throws Exception {
-        // You can implement logic here, or call the domain method of the Assessment.
-
-        /** Option 1-1:  implement logic here     
-            Assessment assessment = new Assessment();
-            assessmentRepository.save(assessment);   
-        */
-
+    public Assessment updateInvestigation(UpdateInvestigationCommand updateInvestigationCommand) throws Exception {
         Optional<Assessment> optionalAssessment = assessmentRepository.findById(
             updateInvestigationCommand.getAssessmentId()
         );

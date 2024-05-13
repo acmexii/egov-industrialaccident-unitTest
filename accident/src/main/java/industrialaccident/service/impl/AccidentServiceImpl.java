@@ -70,38 +70,22 @@ public class AccidentServiceImpl
         Accident accident = new Accident();        
         accident.applyMedicalBenefit(applyMedicalBenefitCommand);
         accidentRepository.save(accident);
-        
+
         return accident;
     }
 
     @Override
-    public Accident applySickLeaveBenefit(
-        ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand
-    ) throws Exception {
-        // You can implement logic here, or call the domain method of the Accident.
+    public Accident applySickLeaveBenefit(ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand) throws Exception {
+        Optional<Accident> optionalAccident = accidentRepository.findById(applySickLeaveBenefitCommand.getAccidentId());
 
-        /** Option 1-1:  implement logic here     
-            Accident accident = new Accident();
-            accident.setUserId(event.getUserId());
+        if (optionalAccident.isPresent()) {
+            Accident accident = optionalAccident.get();
 
-            accidentRepository.save(accident);   
-        */
-
-        // Optional<Accident> optionalAccident = accidentRepository.findById(
-        //     applySickLeaveBenefitCommand.getAccidentId()
-        // );
-
-        // if (optionalAccident.isPresent()) {
-        //     Accident accident = optionalAccident.get();
-
-        //     // business Logic....
-        //     accident.applySickLeaveBenefit(applySickLeaveBenefitCommand);
-        //     accidentRepository.save(accident);
-
-        //     return accident;
-        // } else {
-        //     throw processException("info.nodata.msg");
-        // }
-        return null;
+            // business Logic....
+            accident.applySickLeaveBenefit(applySickLeaveBenefitCommand);
+            return accidentRepository.save(accident);
+        } else {
+            throw processException("info.nodata.msg");
+        }
     }
 }

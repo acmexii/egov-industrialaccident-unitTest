@@ -12,6 +12,7 @@ import lombok.*;
 public class SickLeaveBenefitApplied extends AbstractEvent {
 
     private Long id;
+    private Long sickLeaveId;
     private String businessCode;
     private String employeeId;
     private String name;

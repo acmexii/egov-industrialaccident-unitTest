@@ -52,7 +52,7 @@ public class SickLeave {
         this.setAccidentId(createSickLeaveBenefitCommand.getAccidentId());
         this.setBusinessCode(createSickLeaveBenefitCommand.getBusinessCode());
         this.setEmployeeId(createSickLeaveBenefitCommand.getEmployeeId());
-        this.setStatus("휴업급여 생성됨");
+        this.setStatus("급여처리생성됨");
 
         SickLeaveBenefitCreated sickLeaveBenefitCreated = new SickLeaveBenefitCreated(this);
         sickLeaveBenefitCreated.publishAfterCommit();
@@ -63,6 +63,10 @@ public class SickLeave {
         RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand
     ) {
         //implement business logic here:
+        this.setEmployeeId(employeeId);
+        this.setBusinessCode(businessCode);
+        this.setPeriod(period);
+        this.setStatus("휴업급여요청됨");
 
         SickLeaveBenefitRequested sickLeaveBenefitRequested = new SickLeaveBenefitRequested(this);
         sickLeaveBenefitRequested.publishAfterCommit();

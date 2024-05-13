@@ -55,9 +55,9 @@ public class Assessment {
         UpdateInvestigationCommand updateInvestigationCommand
     ) {
         //implement business logic here:
-        this.setAssessorId(1000L);
-        this.setResults("사실조사 승인됨");
-        this.setComments("쾌유를 바랍니다.");
+        this.setAssessorId(Long.valueOf(updateInvestigationCommand.getAssessorId()));
+        this.setResults("사실조사승인됨");
+        this.setComments(updateInvestigationCommand.getComments());
 
         InvestigationApproved investigationApproved = new InvestigationApproved(this);
         investigationApproved.publishAfterCommit();

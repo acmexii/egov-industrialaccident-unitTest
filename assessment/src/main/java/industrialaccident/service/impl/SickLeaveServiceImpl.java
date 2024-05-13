@@ -65,4 +65,19 @@ public class SickLeaveServiceImpl
         // Delete a sickLeave
         sickLeaveRepository.deleteById(id);
     }
+
+    @Override
+    public SickLeave requestSickLeaveBenefit(RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand) throws Exception {
+        Optional<SickLeave> optionalSickLeave = sickLeaveRepository.findById(
+            requestSickLeaveBenefitCommand.getSickLeaveId());
+
+        if (optionalSickLeave.isPresent()) {
+            SickLeave sickLeave = optionalSickLeave.get();
+            // business Logic....
+            sickLeave.requestSickLeaveBenefit(requestSickLeaveBenefitCommand);
+            return sickLeaveRepository.save(sickLeave);
+        } else {
+            throw processException("info.nodata.msg");
+        }
+    }
 }

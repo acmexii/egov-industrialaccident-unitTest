@@ -56,10 +56,29 @@ public class Accident {
     }
 
     public void applySickLeaveBenefit(ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand) {
+        //business logic
+        this.setEmployeeId(applySickLeaveBenefitCommand.getEmployeeId());
+        this.setPeriod(applySickLeaveBenefitCommand.getPeriod());
+        this.setStatus("휴업급여신청됨");
 
+        //Following code causes dependency to external APIs
+        // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
+        industrialaccident.external.RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand = 
+        new industrialaccident.external.RequestSickLeaveBenefitCommand();
+        // mappings goes here
+        requestSickLeaveBenefitCommand.setSickLeaveId(applySickLeaveBenefitCommand.getSickLeaveId());
+        requestSickLeaveBenefitCommand.setEmployeeId(applySickLeaveBenefitCommand.getEmployeeId());
+        requestSickLeaveBenefitCommand.setBusinessCode(applySickLeaveBenefitCommand.getBusinessCode());
+        requestSickLeaveBenefitCommand.setPeriod(applySickLeaveBenefitCommand.getPeriod());
+
+        AccidentApplication.applicationContext
+            .getBean(industrialaccident.external.SickLeaveService.class)
+            .requestSickLeaveBenefit(applySickLeaveBenefitCommand.getSickLeaveId(), requestSickLeaveBenefitCommand);
+
+        // publish domain Event
         SickLeaveBenefitApplied sickLeaveBenefitApplied = new SickLeaveBenefitApplied(this);
+        sickLeaveBenefitApplied.setSickLeaveId(applySickLeaveBenefitCommand.getSickLeaveId());
         sickLeaveBenefitApplied.publishAfterCommit();
-
     }
 
 }
