@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
+
+import org.springframework.beans.BeansException;
+
 import lombok.Data;
 
 @Entity
@@ -55,7 +58,7 @@ public class Accident {
         this.setStatus("요양급여신청됨");
     }
 
-    public void applySickLeaveBenefit(ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand) {
+    public void applySickLeaveBenefit(ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand) throws BeansException, Exception {
         //business logic
         this.setEmployeeId(applySickLeaveBenefitCommand.getEmployeeId());
         this.setPeriod(applySickLeaveBenefitCommand.getPeriod());

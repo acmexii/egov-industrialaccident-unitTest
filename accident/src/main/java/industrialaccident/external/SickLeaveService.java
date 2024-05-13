@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient(name = "assessment", url = "${api.url.assessment}")
-//@FeignClient(name = "assessment", url = "${api.url.assessment}" fallback = SickLeaveServiceFallback.class)
+// @FeignClient(name = "assessment", url = "${api.url.assessment}", fallback = SickLeaveServiceFallback.class)
 public interface SickLeaveService {
     @RequestMapping(
         method = RequestMethod.PUT,

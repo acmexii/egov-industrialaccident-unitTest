@@ -11,7 +11,7 @@ public class SickLeaveServiceFallback extends EgovAbstractServiceImpl implements
         
         // Some workround Code here, When the called service is disabled        
         System.out.println("#### 휴업급여 신청정보가 임시 저장되었습니다. ####");  
-        System.out.println("#### 해당 시스템이 정상화되면, 정상 처리될 예정입니다. ####");  
+        System.out.println("#### 휴업급여 시스템이 정상화되면, 차례대로 처리될 예정입니다. ####");  
     }
 
 }
