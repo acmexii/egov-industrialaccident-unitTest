@@ -25,6 +25,7 @@ cd siege-4.0.4 &&
 ./configure --prefix=$HOME/siege > /dev/null 2>&1 &&
 sudo make install > /dev/null 2>&1 &&
 echo 'export PATH=$PATH:$HOME/siege/bin' >> ~/.bashrc &&
+cd /workspace/egov-industrialaccident-unitTest &&
 
 cd infra
 docker-compose up
