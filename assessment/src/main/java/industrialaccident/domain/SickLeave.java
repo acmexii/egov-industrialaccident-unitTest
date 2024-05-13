@@ -16,21 +16,13 @@ public class SickLeave {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private Long accessmentId;
-
     private Long accidentId;
-
     private String businessCode;
-
     private String employeeId;
-
     private Float averageSalary;
-
     private Integer period;
-
     private String status;
-
     private Date date;
 
     @PostPersist
@@ -53,29 +45,26 @@ public class SickLeave {
         averageSalaryApplied.publishAfterCommit();
     }
 
-    //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
-    public void createSickLeaveBenefit(
-        CreateSickLeaveBenefitCommand createSickLeaveBenefitCommand
-    ) {
+    public void createSickLeaveBenefit(CreateSickLeaveBenefitCommand createSickLeaveBenefitCommand) {
         //implement business logic here:
+        this.setAccessmentId(createSickLeaveBenefitCommand.getAccessmentId());
+        this.setAccidentId(createSickLeaveBenefitCommand.getAccidentId());
+        this.setBusinessCode(createSickLeaveBenefitCommand.getBusinessCode());
+        this.setEmployeeId(createSickLeaveBenefitCommand.getEmployeeId());
+        this.setStatus("휴업급여 생성됨");
 
-        SickLeaveBenefitCreated sickLeaveBenefitCreated = new SickLeaveBenefitCreated(
-            this
-        );
+        SickLeaveBenefitCreated sickLeaveBenefitCreated = new SickLeaveBenefitCreated(this);
         sickLeaveBenefitCreated.publishAfterCommit();
     }
 
-    //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
     public void requestSickLeaveBenefit(
         RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand
     ) {
         //implement business logic here:
 
-        SickLeaveBenefitRequested sickLeaveBenefitRequested = new SickLeaveBenefitRequested(
-            this
-        );
+        SickLeaveBenefitRequested sickLeaveBenefitRequested = new SickLeaveBenefitRequested(this);
         sickLeaveBenefitRequested.publishAfterCommit();
     }
     //>>> Clean Arch / Port Method

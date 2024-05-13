@@ -51,22 +51,16 @@ public class PolicyHandler {
     public void wheneverInvestigationApproved_CreateSickLeave(
         @Payload InvestigationApproved investigationApproved) {
         InvestigationApproved event = investigationApproved;
-        System.out.println(
-            "\n\n##### listener CreateSickLeave : " +
-            investigationApproved +
-            "\n\n"
-        );
 
         CreateSickLeaveBenefitCommand createSickLeaveBenefitCommand = new CreateSickLeaveBenefitCommand();
-        // implement:  Map command properties from event
+        createSickLeaveBenefitCommand.setAccessmentId(event.getId());
+        createSickLeaveBenefitCommand.setAccidentId(event.getAccidentId());
+        createSickLeaveBenefitCommand.setBusinessCode(event.getBusinessCode());
+        createSickLeaveBenefitCommand.setEmployeeId(event.getEmployeeId());
 
-        // sickLeaveRepository.findById(
-        // implement: Set the SickLeave Id from one of InvestigationApproved event's corresponding property
-
-        // ).ifPresent(sickLeave->{
-        //  sickLeave.createSickLeaveBenefit(createSickLeaveBenefitCommand);
-        // });
-
+        SickLeave sickLeave = new SickLeave();
+        sickLeave.createSickLeaveBenefit(createSickLeaveBenefitCommand);
+        sickLeaveRepository.save(sickLeave);
     }
 }
 //>>> Clean Arch / Inbound Adaptor

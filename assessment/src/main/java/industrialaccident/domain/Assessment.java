@@ -17,23 +17,14 @@ public class Assessment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private Long accidentId;
-
     private String businessCode;
-
     private String employeeId;
-
     private Long assessorId;
-
     private String hospitalCode;
-
     private String doctorNote;
-
     private String results;
-
     private Date date;
-
     private String comments;
 
     @PostPersist
@@ -64,10 +55,11 @@ public class Assessment {
         UpdateInvestigationCommand updateInvestigationCommand
     ) {
         //implement business logic here:
+        this.setAssessorId(1000L);
+        this.setResults("사실조사 승인됨");
+        this.setComments("쾌유를 바랍니다.");
 
-        InvestigationApproved investigationApproved = new InvestigationApproved(
-            this
-        );
+        InvestigationApproved investigationApproved = new InvestigationApproved(this);
         investigationApproved.publishAfterCommit();
     }
 

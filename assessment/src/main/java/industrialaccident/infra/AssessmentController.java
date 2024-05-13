@@ -64,8 +64,6 @@ public class AssessmentController {
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
-        return assessmentService.updateInvestigation(
-            updateInvestigationCommand
-        );
+        return assessmentService.updateInvestigation(updateInvestigationCommand);
     }
 }

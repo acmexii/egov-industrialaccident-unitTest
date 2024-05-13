@@ -11,7 +11,5 @@ public interface AssessmentService {
     Assessment updateAssessment(Assessment assessment) throws Exception;
     void deleteAssessment(Long id) throws Exception;
 
-    Assessment updateInvestigation(
-        UpdateInvestigationCommand updateInvestigationCommand
-    ) throws Exception;
+    Assessment updateInvestigation(UpdateInvestigationCommand updateInvestigationCommand) throws Exception;
 }

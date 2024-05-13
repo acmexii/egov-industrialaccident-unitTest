@@ -73,26 +73,20 @@ public class AssessmentServiceImpl
 
         /** Option 1-1:  implement logic here     
             Assessment assessment = new Assessment();
-            assessment.setUserId(event.getUserId());
-
             assessmentRepository.save(assessment);   
         */
 
-        // Optional<Assessment> optionalAssessment = assessmentRepository.findById(
-        //     updateInvestigationCommand.getAssessmentId()
-        // );
+        Optional<Assessment> optionalAssessment = assessmentRepository.findById(
+            updateInvestigationCommand.getAssessmentId()
+        );
 
-        // if (optionalAssessment.isPresent()) {
-        //     Assessment assessment = optionalAssessment.get();
-
-        //     // business Logic....
-        //     assessment.updateInvestigation(updateInvestigationCommand);
-        //     assessmentRepository.save(assessment);
-
-        //     return assessment;
-        // } else {
-        //     throw processException("info.nodata.msg");
-        // }
-        return null;
+        if (optionalAssessment.isPresent()) {
+            Assessment assessment = optionalAssessment.get();
+            // business Logic....
+            assessment.updateInvestigation(updateInvestigationCommand);
+            return assessmentRepository.save(assessment);
+        } else {
+            throw processException("info.nodata.msg");
+        }
     }
 }
